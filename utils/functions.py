@@ -197,6 +197,8 @@ def load_pretrain_emb(embedding_path):
     embedd_dim = -1
     embedd_dict = dict()
     with open(embedding_path, 'r', encoding="utf8") as file:
+        if any(x in embedding_path for x in ["glove", "GoogleNews"]):
+            next(file)
         for line in file:
             line = line.strip()
             if len(line) == 0:
